@@ -1,0 +1,40 @@
+{
+    "name": "componist/reminder-notifications",
+    "description": "",
+    "keywords": ["laravel","php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Reinhold Jesse",
+            "email": "info@componist.dev"
+        }
+    ],
+    "require": {
+        "componist/core": "dev-main"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Componist\\ReminderNotifications\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Componist\\ReminderNotifications\\ReminderNotificationsServiceProvider"
+            ]
+        }
+    }
+}
