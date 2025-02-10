@@ -36,5 +36,7 @@
                 "Componist\\ReminderNotifications\\ReminderNotificationsServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
