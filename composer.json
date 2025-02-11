@@ -1,7 +1,8 @@
 {
     "name": "componist/reminder-notifications",
-    "description": "",
-    "keywords": ["laravel","php"],
+    "description": "....coming soon",
+    "keywords": [],
+    "homepage": "",
     "license": "MIT",
     "authors": [
         {
@@ -31,6 +32,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
