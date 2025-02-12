@@ -11,7 +11,6 @@
         }
     ],
     "require": {
-        "componist/core": "dev-main"
     },
     "require-dev": {
     },
