@@ -2,8 +2,8 @@
 
 namespace Componist\ReminderNotifications\Commands;
 
-use Illuminate\Console\Command;
 use Componist\ReminderNotifications\Jobs\ReminderNotificationsDailyJob;
+use Illuminate\Console\Command;
 
 class getDailyReminderNotificationsCommands extends Command
 {
@@ -29,7 +29,7 @@ class getDailyReminderNotificationsCommands extends Command
     public function handle()
     {
         ReminderNotificationsDailyJob::dispatch();
-        
+
         return Command::SUCCESS;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace  Componist\ReminderNotifications\Livewire\ReminderNotification;
+namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
+use Componist\Core\Traits\addLivewireControlleFunctions;
+use Componist\ReminderNotifications\Models\ReminderNotification;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Componist\ReminderNotifications\Models\ReminderNotification;
-use Componist\Core\Traits\addLivewireControlleFunctions;
 
 class Index extends Component
 {

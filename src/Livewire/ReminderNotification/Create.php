@@ -2,9 +2,9 @@
 
 namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
+use Componist\Core\Traits\addLivewireControlleFunctions;
 use Componist\ReminderNotifications\Models\ReminderNotification;
 use Livewire\Component;
-use Componist\Core\Traits\addLivewireControlleFunctions;
 
 class Create extends Component
 {
@@ -19,15 +19,14 @@ class Create extends Component
     public ?string $description = '';
 
     public string $type = 'daily';
-   
+
     public string $time = '';
 
     public ?int $daily = null;
 
     public ?int $monthly = null;
-    
-    public string $email = '';
 
+    public string $email = '';
 
     protected $rules = [
         'title' => 'required|string',

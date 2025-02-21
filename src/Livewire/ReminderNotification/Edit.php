@@ -2,9 +2,9 @@
 
 namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
+use Componist\Core\Traits\addLivewireControlleFunctions;
 use Componist\ReminderNotifications\Models\ReminderNotification;
 use Livewire\Component;
-use Componist\Core\Traits\addLivewireControlleFunctions;
 
 class Edit extends Component
 {

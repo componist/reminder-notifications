@@ -3,7 +3,6 @@
 namespace Componist\ReminderNotifications\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -44,9 +43,9 @@ class ReminderNotificationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->subject($this->params['title'])
-        ->greeting('Hallo,')
-                    ->line($this->params['description']);
+            ->subject($this->params['title'])
+            ->greeting('Hallo,')
+            ->line($this->params['description']);
     }
 
     /**

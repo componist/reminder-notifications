@@ -2,8 +2,8 @@
 
 namespace Componist\ReminderNotifications\Commands;
 
-use Illuminate\Console\Command;
 use Componist\ReminderNotifications\Jobs\ReminderNotificationsTimesJob;
+use Illuminate\Console\Command;
 
 class getTimesReminderNotificationsCommands extends Command
 {
@@ -29,7 +29,7 @@ class getTimesReminderNotificationsCommands extends Command
     public function handle()
     {
         ReminderNotificationsTimesJob::dispatch();
-        
+
         return Command::SUCCESS;
     }
 }

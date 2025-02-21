@@ -9,16 +9,17 @@ class ReminderNotification extends Model
 {
     use HasFactory;
 
-    public static function getNotificationType(string $type){
+    public static function getNotificationType(string $type)
+    {
         switch ($type) {
             case 'daily':
-               return 'Tägliche Erinnerungsnachricht';
+                return 'Tägliche Erinnerungsnachricht';
                 break;
             case 'monthly':
-               return 'Monatliche Erinnerungsnachricht';
+                return 'Monatliche Erinnerungsnachricht';
                 break;
             case 'yearly':
-               return 'Jährliche Erinnerungsnachricht';
+                return 'Jährliche Erinnerungsnachricht';
                 break;
         }
     }
