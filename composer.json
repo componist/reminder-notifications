@@ -6,15 +6,15 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Reinhold Jesse",
-            "email": "info@componist.dev"
+            "name": "Componist Developer",
+            "email": "info@componist.dev",
+            "role": "Developer"
         }
     ],
     "require": {
         "componist/core": "^1.0.0"
     },
-    "require-dev": {
-    },
+    "require-dev": {},
     "autoload": {
         "psr-4": {
             "Componist\\ReminderNotifications\\": "src/"
