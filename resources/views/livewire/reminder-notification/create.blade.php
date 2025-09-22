@@ -10,7 +10,7 @@
     <div class="container px-5 mx-auto py-14">
         <div class="flex justify-end gap-4 my-12">
             <button type="button" wire:click="cancel"
-                class="flex items-center justify-center w-56 px-5 py-2 text-gray-500 bg-gray-300 border-0 rounded-md shadow-sm hover:text-white hover:bg-gray-500 default-transition">
+                class="flex items-center justify-center w-56 px-5 py-2 text-slate-500 bg-slate-300 border-0 rounded-md shadow-sm hover:text-white hover:bg-slate-500 default-transition">
                 Abbrechen
             </button>
 

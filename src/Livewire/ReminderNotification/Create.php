@@ -40,7 +40,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('remindernotifications::livewire.reminder-notification.create')->layout(config('core.template.dashboard'));
+        return view('remindernotifications::livewire.reminder-notification.create')->layout(config('componist.template.dashboard'));
     }
 
     public function store(): void

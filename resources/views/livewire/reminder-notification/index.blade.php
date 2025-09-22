@@ -24,15 +24,15 @@
                 <x:component::table.wrapper>
                     <x-slot:head>
                         <x:component::table.row>
-                            <x:component::table.cell class="font-semibold text-left text-gray-700">Title
+                            <x:component::table.cell class="font-semibold text-left text-slate-700">Title
                             </x:component::table.cell>
-                            <x:component::table.cell class="font-semibold text-left text-gray-700">Type
+                            <x:component::table.cell class="font-semibold text-left text-slate-700">Type
                             </x:component::table.cell>
-                            <x:component::table.cell class="font-semibold text-left text-gray-700">Time
+                            <x:component::table.cell class="font-semibold text-left text-slate-700">Time
                             </x:component::table.cell>
-                            <x:component::table.cell class="font-semibold text-left text-gray-700">E-Mail
+                            <x:component::table.cell class="font-semibold text-left text-slate-700">E-Mail
                             </x:component::table.cell>
-                            <x:component::table.cell class="font-semibold text-left text-gray-700">Status
+                            <x:component::table.cell class="font-semibold text-left text-slate-700">Status
                             </x:component::table.cell>
                             <x:component::table.cell></x:component::table.cell>
                         </x:component::table.row>
@@ -40,21 +40,21 @@
 
                     <x-slot:body>
                         @foreach ($content as $value)
-                            <x:component::table.row class="hover:bg-gray-50">
+                            <x:component::table.row class="hover:bg-slate-50">
 
-                                <x:component::table.cell class="text-left text-gray-500">{{ $value->title }}
+                                <x:component::table.cell class="text-left text-slate-500">{{ $value->title }}
                                 </x:component::table.cell>
-                                <x:component::table.cell class="text-left text-gray-500">
+                                <x:component::table.cell class="text-left text-slate-500">
                                     @if ($value->type == 'daily')
                                         <span
                                             class="px-5 py-1 text-xs text-white bg-green-500 rounded-full shadow-sm">Täglich</span>
                                     @endif
                                 </x:component::table.cell>
-                                <x:component::table.cell class="text-left text-gray-500">{{ $value->time }}
+                                <x:component::table.cell class="text-left text-slate-500">{{ $value->time }}
                                 </x:component::table.cell>
-                                <x:component::table.cell class="text-left text-gray-500">{{ $value->email }}
+                                <x:component::table.cell class="text-left text-slate-500">{{ $value->email }}
                                 </x:component::table.cell>
-                                <x:component::table.cell class="text-left text-gray-500">
+                                <x:component::table.cell class="text-left text-slate-500">
                                     <x:component::form.toggle wire:change="toggle({{ $value->id }},'status')"
                                         status="{{ $value->status }}" />
                                 </x:component::table.cell>
@@ -79,14 +79,14 @@
                                                 </div>
                                             </div>
                                             <div class="flex justify-center mt-7">
-                                                <h3 class="text-lg font-bold text-center text-gray-700">
+                                                <h3 class="text-lg font-bold text-center text-slate-700">
                                                     Eintrag unwiderruflich löschen?</h3>
                                             </div>
                                         </x-slot:content>
 
                                         <x-slot:controller>
                                             <button @click.prevent="modal=false" type="button"
-                                                class="flex justify-center w-full px-4 py-2 mr-2 font-medium text-center text-white bg-gray-300 border border-transparent rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Abbrechen</button>
+                                                class="flex justify-center w-full px-4 py-2 mr-2 font-medium text-center text-white bg-slate-300 border border-transparent rounded-md shadow-sm hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Abbrechen</button>
 
                                             <button wire:click='delete({{ $value->id }})'
                                                 @click.prevent="modal=false" type="button"
