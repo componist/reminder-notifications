@@ -56,7 +56,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('remindernotifications::livewire.reminder-notification.edit')->layout(config('core.template.dashboard'));
+        return view('remindernotifications::livewire.reminder-notification.edit')->layout(config('componist.template.dashboard'));
     }
 
     public function update(): void

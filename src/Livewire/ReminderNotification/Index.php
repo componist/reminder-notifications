@@ -18,7 +18,7 @@ class Index extends Component
     {
         $content = ReminderNotification::where('title', 'LIKE', '%'.trim($this->search).'%')->paginate(25);
 
-        return view('remindernotifications::livewire.reminder-notification.index', compact('content'))->layout(config('core.template.dashboard'));
+        return view('remindernotifications::livewire.reminder-notification.index', compact('content'))->layout(config('componist.template.dashboard'));
     }
 
     public function toggle(int $id, string $field): void
