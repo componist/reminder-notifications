@@ -1,7 +1,13 @@
 {
     "name": "componist/reminder-notifications",
-    "description": "....coming soon",
-    "keywords": [],
+    "description": "Livewire-powered reminder notifications for Laravel.",
+    "keywords": [
+        "laravel",
+        "livewire",
+        "notifications",
+        "reminder",
+        "scheduler"
+    ],
     "homepage": "",
     "license": "MIT",
     "authors": [

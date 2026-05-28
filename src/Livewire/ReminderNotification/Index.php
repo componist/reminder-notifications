@@ -30,7 +30,7 @@ class Index extends Component
 
     public function delete(int $id): void
     {
-        if (ReminderNotification::find($id)->delete()) {
+        if (ReminderNotification::findOrFail($id)->delete()) {
             $this->bannerMessage('success', 'Eintrag wurde erfolgreich gelöscht');
         } else {
             $this->bannerMessage('danger', 'Fehler beim löschen des Eintrags.');

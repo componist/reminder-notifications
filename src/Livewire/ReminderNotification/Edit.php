@@ -47,9 +47,9 @@ class Edit extends Component
         $this->title = $editElement['title'];
         $this->description = $editElement['description'];
         $this->type = $editElement['type'];
-        $this->time = $editElement['time'];
-        $this->daily = $editElement['daily'];
-        $this->monthly = $editElement['monthly'];
+        $this->time = $editElement['time'] ?? '';
+        $this->daily = $editElement['daily'] !== null ? (int) $editElement['daily'] : null;
+        $this->monthly = $editElement['monthly'] !== null ? (int) $editElement['monthly'] : null;
         $this->email = $editElement['email'];
 
     }
