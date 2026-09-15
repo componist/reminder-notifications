@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Componist\ReminderNotifications\Models;
 
+use Componist\ReminderNotifications\Domain\ReminderNotificationType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,18 +14,19 @@ class ReminderNotification extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public static function getNotificationType(string $type)
+    protected $fillable = [
+        'title',
+        'description',
+        'email',
+        'type',
+        'time',
+        'daily',
+        'monthly',
+        'status',
+    ];
+
+    public static function getNotificationType(string $type): string
     {
-        switch ($type) {
-            case 'daily':
-                return 'Tägliche Erinnerungsnachricht';
-                break;
-            case 'monthly':
-                return 'Monatliche Erinnerungsnachricht';
-                break;
-            case 'yearly':
-                return 'Jährliche Erinnerungsnachricht';
-                break;
-        }
+        return ReminderNotificationType::label($type);
     }
 }

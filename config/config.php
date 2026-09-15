@@ -1,41 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
+use Componist\ReminderNotifications\Livewire\ReminderNotification\Create;
+use Componist\ReminderNotifications\Livewire\ReminderNotification\Edit;
+use Componist\ReminderNotifications\Livewire\ReminderNotification\Index;
+
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Components
-    |--------------------------------------------------------------------------
-     */
+    'admin_user_ids' => array_values(array_filter(array_map(
+        static fn (string $id): int => (int) trim($id),
+        explode(',', (string) env('REMINDER_NOTIFICATIONS_ADMIN_IDS', ''))
+    ))),
 
-    'components' => [
-
-    ],
-    /*
-    |--------------------------------------------------------------------------
-    | Livewire Components
-    |--------------------------------------------------------------------------
-     */
+    'components' => [],
 
     'livewire' => [
-        'reminder-notification.index' => Componist\ReminderNotifications\Livewire\ReminderNotification\Index::class,
-        'reminder-notification.create' => Componist\ReminderNotifications\Livewire\ReminderNotification\Create::class,
-        'reminder-notification.edit' => Componist\ReminderNotifications\Livewire\ReminderNotification\Edit::class,
+        'reminder-notification.index' => Index::class,
+        'reminder-notification.create' => Create::class,
+        'reminder-notification.edit' => Edit::class,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Components Prefix
-    |--------------------------------------------------------------------------
-     */
-
     'prefix' => '',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Third Party Asset Libraries
-    |--------------------------------------------------------------------------
-     */
 
     'assets' => [],
 

@@ -1,14 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
 use Componist\Core\Traits\addLivewireControlleFunctions;
-use Componist\ReminderNotifications\Models\ReminderNotification;
+use Componist\ReminderNotifications\Application\ReminderNotificationService;
+use Componist\ReminderNotifications\Domain\ReminderNotificationRules;
+use Componist\ReminderNotifications\Support\AuthorizesReminderNotifications;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Create extends Component
 {
     use addLivewireControlleFunctions;
+    use AuthorizesReminderNotifications;
 
     private string $routeIndex = 'package.reminder-notification.index';
 
@@ -28,26 +34,39 @@ class Create extends Component
 
     public string $email = '';
 
-    protected $rules = [
-        'title' => 'required|string',
-        'description' => 'nullable|string',
-        'email' => 'required|email:rfc',
-        'type' => 'required|string',
-        'time' => 'nullable|string',
-        'daily' => 'nullable|numeric',
-        'monthly' => 'nullable|numeric',
-    ];
-
-    public function render()
+    public function mount(): void
     {
-        return view('remindernotifications::livewire.reminder-notification.create')->layout(config('componist.template.dashboard'));
+        $this->authorizeManage();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function rules(): array
+    {
+        return ReminderNotificationRules::rules($this->type);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function messages(): array
+    {
+        return ReminderNotificationRules::messages();
+    }
+
+    public function render(): View
+    {
+        return view('remindernotifications::livewire.reminder-notification.create')
+            ->layout(config('componist.template.dashboard'));
     }
 
     public function store(): void
     {
+        $this->authorizeManage();
         $this->validate();
 
-        if (ReminderNotification::insert([
+        ReminderNotificationService::create([
             'title' => $this->title,
             'description' => $this->description,
             'email' => $this->email,
@@ -55,12 +74,8 @@ class Create extends Component
             'time' => $this->time,
             'daily' => $this->daily,
             'monthly' => $this->monthly,
-            'created_at' => date('Y-m-d H:i:s'),
-        ])) {
-            $this->bannerMessage('success', 'Eintrag wurde erfolgreich gespeichert');
-        } else {
-            $this->bannerMessage('danger', 'Fehler beim speichern des Eintrags.');
-        }
+        ]);
 
+        $this->flashMessage('success', 'Eintrag wurde erfolgreich gespeichert.');
     }
 }

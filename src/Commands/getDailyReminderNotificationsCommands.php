@@ -19,7 +19,7 @@ class getDailyReminderNotificationsCommands extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Versendet fällige monatliche und jährliche Erinnerungs-E-Mails.';
 
     /**
      * Execute the console command.

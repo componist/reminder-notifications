@@ -19,7 +19,7 @@ class getTimesReminderNotificationsCommands extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Versendet fällige tägliche Erinnerungs-E-Mails (nach Uhrzeit).';
 
     /**
      * Execute the console command.

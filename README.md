@@ -24,7 +24,7 @@ composer dump-autoload
 php artisan migrate
 ```
 
-## What the package registers
+## Nutzung
 
 ### Service Provider
 
@@ -127,26 +127,30 @@ Current mail output:
 
 The package config key is **`reminderNotificationConfig`**.
 
-To override values, create:
-
-- `config/reminderNotificationConfig.php`
-
-Example (minimal):
-
-```php
-<?php
-
-return [
-    'prefix' => '',
-    'livewire' => [
-        // override aliases/components if needed
-    ],
-];
-```
-
 Available defaults are in `packages/componist/reminder-notifications/config/config.php`.
 
-## Troubleshooting
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `php artisan app:get-times-reminder-notifications-commands` | Dispatches job for **daily** reminders matching current `H:i` (scheduled every minute) |
+| `php artisan app:get-daily-reminder-notifications-commands` | Dispatches job for **monthly/yearly** reminders (scheduled daily at 01:00) |
+
+Both commands enqueue `ShouldQueue` jobs — run `php artisan queue:work`.
+
+## Berechtigungen / Permissions
+
+- Env: `REMINDER_NOTIFICATIONS_ADMIN_IDS` (comma-separated user IDs)
+- Gate: `manage-reminder-notifications` (also allows `users.isAdmin = 1` when the column exists)
+- Dashboard routes: `auth` + Gate — only admins may open or mutate reminders
+
+## Tests
+
+```bash
+php artisan test --compact --testsuite=ReminderNotifications
+```
+
+## Hinweise
 
 - **No emails are sent**
   - Check `MAIL_*` configuration

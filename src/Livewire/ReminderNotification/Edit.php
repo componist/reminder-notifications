@@ -1,20 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
 use Componist\Core\Traits\addLivewireControlleFunctions;
+use Componist\ReminderNotifications\Application\ReminderNotificationService;
+use Componist\ReminderNotifications\Domain\ReminderNotificationRules;
 use Componist\ReminderNotifications\Models\ReminderNotification;
+use Componist\ReminderNotifications\Support\AuthorizesReminderNotifications;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Edit extends Component
 {
     use addLivewireControlleFunctions;
+    use AuthorizesReminderNotifications;
 
     private string $routeIndex = 'package.reminder-notification.index';
 
     private string $isRoute = 'package.reminder-notification.create';
 
-    public array $oldEntry = [];
+    public int $reminderId;
 
     public string $title = '';
 
@@ -30,53 +37,61 @@ class Edit extends Component
 
     public string $email = '';
 
-    protected $rules = [
-        'title' => 'required|string',
-        'description' => 'nullable|string',
-        'email' => 'required|email:rfc',
-        'type' => 'required|string',
-        'time' => 'nullable|string',
-        'daily' => 'nullable|numeric',
-        'monthly' => 'nullable|numeric',
-    ];
-
     public function mount(ReminderNotification $editElement): void
     {
-        $this->oldEntry = collect($editElement)->toArray();
+        $this->authorizeManage();
 
-        $this->title = $editElement['title'];
-        $this->description = $editElement['description'];
-        $this->type = $editElement['type'];
-        $this->time = $editElement['time'] ?? '';
-        $this->daily = $editElement['daily'] !== null ? (int) $editElement['daily'] : null;
-        $this->monthly = $editElement['monthly'] !== null ? (int) $editElement['monthly'] : null;
-        $this->email = $editElement['email'];
-
+        $this->reminderId = (int) $editElement->id;
+        $this->title = (string) $editElement->title;
+        $this->description = $editElement->description;
+        $this->type = (string) $editElement->type;
+        $this->time = (string) ($editElement->time ?? '');
+        $this->daily = $editElement->daily !== null ? (int) $editElement->daily : null;
+        $this->monthly = $editElement->monthly !== null ? (int) $editElement->monthly : null;
+        $this->email = (string) $editElement->email;
     }
 
-    public function render()
+    /**
+     * @return array<string, mixed>
+     */
+    protected function rules(): array
     {
-        return view('remindernotifications::livewire.reminder-notification.edit')->layout(config('componist.template.dashboard'));
+        return ReminderNotificationRules::rules($this->type);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function messages(): array
+    {
+        return ReminderNotificationRules::messages();
+    }
+
+    public function render(): View
+    {
+        return view('remindernotifications::livewire.reminder-notification.edit')
+            ->layout(config('componist.template.dashboard'));
     }
 
     public function update(): void
     {
+        $this->authorizeManage();
         $this->validate();
 
-        if (ReminderNotification::where('id', $this->oldEntry['id'])->update([
+        if (! ReminderNotificationService::update($this->reminderId, [
             'title' => $this->title,
             'description' => $this->description,
+            'email' => $this->email,
             'type' => $this->type,
             'time' => $this->time,
             'daily' => $this->daily,
             'monthly' => $this->monthly,
-            'email' => $this->email,
-            'updated_at' => date('Y-m-d H:i:s'),
         ])) {
-            $this->bannerMessage('success', 'Eintrag wurde erfolgreich gespeichert');
-        } else {
-            $this->bannerMessage('danger', 'Fehler beim speichern des Eintrags.');
+            $this->flashMessage('danger', 'Eintrag wurde nicht gefunden.');
+
+            return;
         }
 
+        $this->flashMessage('success', 'Eintrag wurde erfolgreich gespeichert.');
     }
 }
