@@ -6,7 +6,7 @@ namespace Componist\ReminderNotifications\Livewire\ReminderNotification;
 
 use Componist\Core\Traits\addLivewireControlleFunctions;
 use Componist\ReminderNotifications\Application\ReminderNotificationService;
-use Componist\ReminderNotifications\Domain\ReminderNotificationRules;
+use Componist\ReminderNotifications\Livewire\Validation\ReminderNotificationValidationRules;
 use Componist\ReminderNotifications\Models\ReminderNotification;
 use Componist\ReminderNotifications\Support\AuthorizesReminderNotifications;
 use Illuminate\Contracts\View\View;
@@ -56,7 +56,7 @@ class Edit extends Component
      */
     protected function rules(): array
     {
-        return ReminderNotificationRules::rules($this->type);
+        return ReminderNotificationValidationRules::rules($this->type);
     }
 
     /**
@@ -64,7 +64,7 @@ class Edit extends Component
      */
     protected function messages(): array
     {
-        return ReminderNotificationRules::messages();
+        return ReminderNotificationValidationRules::messages();
     }
 
     public function render(): View

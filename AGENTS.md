@@ -16,6 +16,7 @@ Dashboard-CRUD für zeitgesteuerte E-Mail-Erinnerungen (`daily` / `monthly` / `y
 src/Domain/{ReminderNotificationRules,ReminderNotificationType}.php
 src/Application/{ReminderNotificationService,ReminderNotificationListQuery,ReminderDispatchService}.php
 src/Livewire/ReminderNotification/{Index,Create,Edit}.php
+src/Livewire/Validation/ReminderNotificationValidationRules.php
 src/Jobs/ReminderNotifications{Daily,Times}Job.php
 src/Support/AuthorizesReminderNotifications.php
 config/config.php → reminderNotificationConfig
